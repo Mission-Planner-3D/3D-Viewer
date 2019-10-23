@@ -1,0 +1,3 @@
+D:\Nolen\Documents\Computer Science\CAPSTONE\CaspstoneRepo\CoordinateConverter\CoordinateConverter\obj\Debug\netstandard2.0\CoordinateConverter.csprojAssemblyReference.cache
+D:\Nolen\Documents\Computer Science\CAPSTONE\CaspstoneRepo\CoordinateConverter\CoordinateConverter\obj\Debug\netstandard2.0\CoordinateConverter.AssemblyInfoInputs.cache
+D:\Nolen\Documents\Computer Science\CAPSTONE\CaspstoneRepo\CoordinateConverter\CoordinateConverter\obj\Debug\netstandard2.0\CoordinateConverter.AssemblyInfo.cs
