@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Nolen\\Documents\\Computer Science\\CAPSTONE\\CaspstoneRepo\\3D-Viewer\\CoordinateConverter\\CoordinateConverter\\CoordinateConverter.csproj": {}
+    "D:\\Nolen\\Documents\\Computer Science\\CAPSTONE\\CaspstoneRepo\\CoordinateConverter\\CoordinateConverter\\CoordinateConverter.csproj": {}
   },
   "projects": {
-    "D:\\Nolen\\Documents\\Computer Science\\CAPSTONE\\CaspstoneRepo\\3D-Viewer\\CoordinateConverter\\CoordinateConverter\\CoordinateConverter.csproj": {
+    "D:\\Nolen\\Documents\\Computer Science\\CAPSTONE\\CaspstoneRepo\\CoordinateConverter\\CoordinateConverter\\CoordinateConverter.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Nolen\\Documents\\Computer Science\\CAPSTONE\\CaspstoneRepo\\3D-Viewer\\CoordinateConverter\\CoordinateConverter\\CoordinateConverter.csproj",
+        "projectUniqueName": "D:\\Nolen\\Documents\\Computer Science\\CAPSTONE\\CaspstoneRepo\\CoordinateConverter\\CoordinateConverter\\CoordinateConverter.csproj",
         "projectName": "CoordinateConverter",
-        "projectPath": "D:\\Nolen\\Documents\\Computer Science\\CAPSTONE\\CaspstoneRepo\\3D-Viewer\\CoordinateConverter\\CoordinateConverter\\CoordinateConverter.csproj",
+        "projectPath": "D:\\Nolen\\Documents\\Computer Science\\CAPSTONE\\CaspstoneRepo\\CoordinateConverter\\CoordinateConverter\\CoordinateConverter.csproj",
         "packagesPath": "C:\\Users\\Nolen Young\\.nuget\\packages\\",
-        "outputPath": "D:\\Nolen\\Documents\\Computer Science\\CAPSTONE\\CaspstoneRepo\\3D-Viewer\\CoordinateConverter\\CoordinateConverter\\obj\\",
+        "outputPath": "D:\\Nolen\\Documents\\Computer Science\\CAPSTONE\\CaspstoneRepo\\CoordinateConverter\\CoordinateConverter\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
