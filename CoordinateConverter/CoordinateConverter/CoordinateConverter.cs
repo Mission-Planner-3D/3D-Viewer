@@ -90,27 +90,34 @@ namespace CoordinateConverter
         }
          
         /// <summary>
-        /// this method takes two sets of coordinates and converts them to 
+        /// finds the distance between the lat long coords
         /// </summary>
         /// <param name="end"></param>
         /// <param name="start"></param>
         /// <returns>distance in meters between the two points, double</returns>
         private double DistanceBetweenGeoPoints(GeoCoordinate point1, GeoCoordinate point2)
         {
+            // check for equal points
             if ((point1.Latitude == point2.Latitude) && (point1.Longitude == point2.Longitude))
             {
                 return 0;
             }
             else
             {
-                double theta = point1.Longitude - point2.Longitude;
-                double dist = Math.Sin(deg2rad(point1.Latitude)) * Math.Sin(deg2rad(point2.Latitude)) + Math.Cos(deg2rad(point1.Latitude)) * Math.Cos(deg2rad(point2.Latitude)) * Math.Cos(deg2rad(theta));
-                dist = Math.Acos(dist);
-                dist = rad2deg(dist);
-                dist = dist * 60 * 1.1515;
-                dist = (dist * 1.609344) / 1000;
+                double result = 0;
 
-                return dist;
+                double lat1Rads = ToRad(point1.Latitude);
+                double lat2Rads = ToRad(point2.Latitude);
+                double latDeltaRads = ToRad(point2.Latitude - point1.Latitude);
+                double lonDeltaRads = ToRad(point2.Longitude - point1.Longitude);
+
+                double a = Math.Sin(latDeltaRads / 2) * Math.Sin(latDeltaRads / 2) +
+                           Math.Cos(lat1Rads) * Math.Cos(lat2Rads) *
+                           Math.Sin(lonDeltaRads / 2) * Math.Sin(lonDeltaRads / 2);
+                double c = 2 * atan2(Math.Sqrt(a), Math.Sqrt(1-a));
+                result = c * 6371e3;
+
+                return result;
             }
         }
 
@@ -128,6 +135,18 @@ namespace CoordinateConverter
             if (Math.Abs(dLon) > Math.PI)
                 dLon = dLon > 0 ? -(2 * Math.PI - dLon) : (2 * Math.PI + dLon);
             return ToBearing(Math.Atan2(dLon, dPhi));
+        }
+
+        private double atan2(double y, double x)
+        {
+            if (x < 0)
+            {
+                return (Math.Atan(y / x) + 3 * Math.PI / 2); // subst 270 for 3*pi/2 if degrees
+            }
+            else
+            {
+                return (Math.Atan(y / x) + Math.PI / 2); // subst 90 for pi/2 if degrees
+            }
         }
 
         private static double ToRad(double degrees)
@@ -173,6 +192,12 @@ namespace CoordinateConverter
     {
         private double latitude;
         private double longitude;
+
+        public GeoCoordinate(double v1, double v2)
+        {
+            this.latitude = v1;
+            this.longitude = v2;
+        }
 
         public double Latitude
         {
