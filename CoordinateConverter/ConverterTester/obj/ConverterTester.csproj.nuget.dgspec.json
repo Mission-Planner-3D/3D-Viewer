@@ -1,0 +1,125 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Nolen\\Documents\\Computer Science\\CAPSTONE\\CaspstoneRepo\\3D-Viewer\\CoordinateConverter\\ConverterTester\\ConverterTester.csproj": {}
+  },
+  "projects": {
+    "D:\\Nolen\\Documents\\Computer Science\\CAPSTONE\\CaspstoneRepo\\3D-Viewer\\CoordinateConverter\\ConverterTester\\ConverterTester.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Nolen\\Documents\\Computer Science\\CAPSTONE\\CaspstoneRepo\\3D-Viewer\\CoordinateConverter\\ConverterTester\\ConverterTester.csproj",
+        "projectName": "ConverterTester",
+        "projectPath": "D:\\Nolen\\Documents\\Computer Science\\CAPSTONE\\CaspstoneRepo\\3D-Viewer\\CoordinateConverter\\ConverterTester\\ConverterTester.csproj",
+        "packagesPath": "C:\\Users\\Nolen Young\\.nuget\\packages\\",
+        "outputPath": "D:\\Nolen\\Documents\\Computer Science\\CAPSTONE\\CaspstoneRepo\\3D-Viewer\\CoordinateConverter\\ConverterTester\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Nolen Young\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.0": {
+            "projectReferences": {
+              "D:\\Nolen\\Documents\\Computer Science\\CAPSTONE\\CaspstoneRepo\\3D-Viewer\\CoordinateConverter\\CoordinateConverter\\CoordinateConverter.csproj": {
+                "projectPath": "D:\\Nolen\\Documents\\Computer Science\\CAPSTONE\\CaspstoneRepo\\3D-Viewer\\CoordinateConverter\\CoordinateConverter\\CoordinateConverter.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Nolen\\Documents\\Computer Science\\CAPSTONE\\CaspstoneRepo\\3D-Viewer\\CoordinateConverter\\CoordinateConverter\\CoordinateConverter.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Nolen\\Documents\\Computer Science\\CAPSTONE\\CaspstoneRepo\\3D-Viewer\\CoordinateConverter\\CoordinateConverter\\CoordinateConverter.csproj",
+        "projectName": "CoordinateConverter",
+        "projectPath": "D:\\Nolen\\Documents\\Computer Science\\CAPSTONE\\CaspstoneRepo\\3D-Viewer\\CoordinateConverter\\CoordinateConverter\\CoordinateConverter.csproj",
+        "packagesPath": "C:\\Users\\Nolen Young\\.nuget\\packages\\",
+        "outputPath": "D:\\Nolen\\Documents\\Computer Science\\CAPSTONE\\CaspstoneRepo\\3D-Viewer\\CoordinateConverter\\CoordinateConverter\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Nolen Young\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

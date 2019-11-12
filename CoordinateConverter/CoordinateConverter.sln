@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29324.140
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoordinateConverter", "CoordinateConverter\CoordinateConverter.csproj", "{6F713DDF-E04C-46FB-9764-E056D3CEF14E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoordinateConverter", "CoordinateConverter\CoordinateConverter.csproj", "{6F713DDF-E04C-46FB-9764-E056D3CEF14E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConverterTester", "ConverterTester\ConverterTester.csproj", "{3123AF50-0395-448F-B416-8ED47A4E9553}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{6F713DDF-E04C-46FB-9764-E056D3CEF14E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F713DDF-E04C-46FB-9764-E056D3CEF14E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F713DDF-E04C-46FB-9764-E056D3CEF14E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3123AF50-0395-448F-B416-8ED47A4E9553}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3123AF50-0395-448F-B416-8ED47A4E9553}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3123AF50-0395-448F-B416-8ED47A4E9553}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3123AF50-0395-448F-B416-8ED47A4E9553}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
