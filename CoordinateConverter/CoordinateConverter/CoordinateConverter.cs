@@ -121,12 +121,19 @@ namespace CoordinateConverter
         /// <returns>double angle of bearing</returns>
         private double FindBearing (GeoCoordinate point1, GeoCoordinate point2)
         {
-            var dLon = ToRad(point2.Longitude - point1.Longitude);
-            var dPhi = Math.Log(
-                Math.Tan(ToRad(point2.Latitude) / 2 + Math.PI / 4) / Math.Tan(ToRad(point1.Latitude) / 2 + Math.PI / 4));
-            if (Math.Abs(dLon) > Math.PI)
-                dLon = dLon > 0 ? -(2 * Math.PI - dLon) : (2 * Math.PI + dLon);
-            return ToBearing(Math.Atan2(dLon, dPhi));
+            double dLon = ToRad(point2.Longitude - point1.Longitude);
+
+            double y = Math.Sin(dLon) * Math.Cos(ToRad(point2.Latitude));
+            double x = Math.Cos(ToRad(point1.Latitude)) * Math.Sin(ToRad(point2.Latitude)) - Math.Sin(ToRad(point1.Latitude))
+                    * Math.Cos(ToRad(point2.Latitude)) * Math.Cos(dLon);
+
+            double brng = Math.Atan2(y, x);
+
+            brng = ToDegrees(brng);
+            brng = (brng + 360) % 360;
+            brng = 360 - brng; // count degrees counter-clockwise - remove to make clockwise
+
+            return brng;
         }
 
         private double atan2(double y, double x)
