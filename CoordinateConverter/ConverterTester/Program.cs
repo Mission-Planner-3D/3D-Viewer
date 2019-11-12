@@ -1,14 +1,12 @@
 ﻿using System;
 
-namespace ConverterTester
+namespace CoordinateConverter
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-
-            CoordinateConverter.CoordinateConverter myConverter = new CoordinateConverter.CoordinateConverter();
+            CoordinateConverter myConverter = new CoordinateConverter();
 
         }
     }
