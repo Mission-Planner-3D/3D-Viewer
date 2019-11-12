@@ -104,6 +104,7 @@ namespace CoordinateConverter
             }
             else
             {
+                /*
                 double result = 0;
 
                 double lat1Rads = ToRad(point1.Latitude);
@@ -118,6 +119,14 @@ namespace CoordinateConverter
                 result = c * 6371e3;
 
                 return result;
+                */
+
+                double dlon = ToRad(point2.Longitude - point1.Longitude);
+                double dlat = ToRad(point2.Latitude - point1.Latitude);
+
+                double a = (Math.Sin(dlat / 2) * Math.Sin(dlat / 2)) + Math.Cos(ToRad(point1.Latitude)) * Math.Cos(ToRad(point2.Latitude)) * (Math.Sin(dlon / 2) * Math.Sin(dlon / 2));
+                double angle = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
+                return angle * 6371e3;
             }
         }
 
