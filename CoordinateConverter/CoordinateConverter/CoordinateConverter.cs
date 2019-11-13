@@ -25,13 +25,29 @@ namespace CoordinateConverter
 {
     public class CoordinateConverter
     {
+        public MeterCoordinate FindMeterCoordinateFromOrigin(GeoCoordinate origin, GeoCoordinate point)
+        {
+            MeterCoordinate result = new MeterCoordinate();
+
+            double dlon = point.Longitude - origin.Longitude;
+            double dlat = point.Latitude - origin.Latitude;
+
+            double latitudeCircumference = 40075160 * Math.Cos(ToRad(origin.Latitude));
+            result.X = dlon * latitudeCircumference / 360;
+            result.Y = dlat * 40008000 / 360;
+
+            return result;
+        }
+
+
+        /*
         /// <summary>
         /// pass in origin and unknown point, return its location in 3D space
         /// </summary>
         /// <param name="origin"></param>
         /// <param name="point"></param>
         /// <returns>MeterCoordinate</returns>
-        public MeterCoordinate FindMeterCoordinateFromOrigin(GeoCoordinate origin, GeoCoordinate point)
+        public MeterCoordinate FindMeterCoordinateFromOrigin2(GeoCoordinate origin, GeoCoordinate point)
         {
             MeterCoordinate result = new MeterCoordinate();
             // find the distance and bearing from the origin to the point
@@ -144,6 +160,7 @@ namespace CoordinateConverter
         private double FindBearing (GeoCoordinate point1, GeoCoordinate point2)
         {
             // I also found this math online and converted it into c#. appears to work
+            
             double dLon = ToRad(point2.Longitude - point1.Longitude);
 
             double y = Math.Sin(dLon) * Math.Cos(ToRad(point2.Latitude));
@@ -157,7 +174,11 @@ namespace CoordinateConverter
             brng = 360 - brng; // count degrees counter-clockwise - remove to make clockwise
 
             return brng;
+            
+
+
         }
+        */
 
         /// <summary>
         /// a version of the Math.atan2 found in javascript and converted to c#

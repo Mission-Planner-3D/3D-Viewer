@@ -7,8 +7,8 @@ namespace CoordinateConverter
         static void Main(string[] args)
         {
             CoordinateConverter myConverter = new CoordinateConverter();
-            GeoCoordinate myApartment = new GeoCoordinate(46.732518, -117.173337);
-            GeoCoordinate sloan = new GeoCoordinate(46.730576, -117.168540);
+            GeoCoordinate myApartment = new GeoCoordinate(46.7302976970894, -117.168948054314);
+            GeoCoordinate sloan = new GeoCoordinate(46.72937850, -117.16925380);
             MeterCoordinate sloanCoordinate = new MeterCoordinate();
             MeterCoordinate myApartmentCoordinate = new MeterCoordinate();
 
