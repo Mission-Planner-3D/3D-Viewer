@@ -1,4 +1,25 @@
-﻿using System;
+﻿/*
+* Washington State University
+* Game of Drones
+* Nolen Young
+* 
+* Title:        ArduPilot 3D viewer coordinate converter
+* 
+* Description:  This class library converts latitude/longitude points to meter coordinates
+*               in a cartesian plane, based off some known origin point.
+*               The class library also converts meter coordinates back to latitude/longitude coordinates
+*               based off of some known origin point.
+* 
+* Testing:      Lat/Lon -> Meter Coordinates:   This appears to be working according to some of my
+*                                               brief testing by hand. But it does appear that some error
+*                                               inherint in the system right now which is significant
+*                                               enough to be removed.
+*               
+*               Meter Coordinates -> Lat/Lon:   This also appears to be working but with some bugs and will
+*                                               need to be worked on further before it is ready fully.
+*/
+
+using System;
 
 namespace CoordinateConverter
 {
@@ -13,31 +34,30 @@ namespace CoordinateConverter
         public MeterCoordinate FindMeterCoordinateFromOrigin(GeoCoordinate origin, GeoCoordinate point)
         {
             MeterCoordinate result = new MeterCoordinate();
+            // find the distance and bearing from the origin to the point
             double distance = DistanceBetweenGeoPoints(origin, point), bearing = FindBearing(origin, point);
             
+            // if result is on the x or y axis, set and return
             if (bearing == 0)
             {
                 result.X = distance;
-                return result;
             }
             else if (bearing == 90)
             {
                 result.Y = distance;
-                return result;
             }
             else if (bearing == 180)
             {
                 result.X = distance * -1;
-                return result;
             }
             else if(bearing == 270)
             {
                 result.Y = distance * -1;
-                return result;
             }
-            else
+            else // bearing is not directly on the axis
             {
                 double angleA = 0;
+                // find the inside angle based off the bearing. Think of it like a unit circle i suppose.
                 if (bearing < 90)
                 {
                     angleA = bearing;
@@ -54,7 +74,7 @@ namespace CoordinateConverter
                 {
                     angleA = bearing - 270;
                 }
-
+                //angle side angle computation. euclidian trig introduces some error!
                 double angleC = 90 - bearing, angleB = 90;
                 double sideB = distance;
 
@@ -62,6 +82,7 @@ namespace CoordinateConverter
 
                 double sideC = ((sideB * Math.Sin(angleC)) / Math.Sin(angleB));
 
+                // set result to correct lengths based off the calculations
                 if (bearing < 90)
                 {
                     result.X = sideC;
@@ -104,6 +125,7 @@ namespace CoordinateConverter
             }
             else
             {
+                // I found this math online and translated it into c#. appears to be correct
                 double dlon = ToRad(point2.Longitude - point1.Longitude);
                 double dlat = ToRad(point2.Latitude - point1.Latitude);
 
@@ -121,6 +143,7 @@ namespace CoordinateConverter
         /// <returns>double angle of bearing</returns>
         private double FindBearing (GeoCoordinate point1, GeoCoordinate point2)
         {
+            // I also found this math online and converted it into c#. appears to work
             double dLon = ToRad(point2.Longitude - point1.Longitude);
 
             double y = Math.Sin(dLon) * Math.Cos(ToRad(point2.Latitude));
@@ -136,6 +159,12 @@ namespace CoordinateConverter
             return brng;
         }
 
+        /// <summary>
+        /// a version of the Math.atan2 found in javascript and converted to c#
+        /// </summary>
+        /// <param name="y"></param>
+        /// <param name="x"></param>
+        /// <returns>arc tan between two radians</returns>
         private double atan2(double y, double x)
         {
             if (x < 0)
@@ -148,32 +177,44 @@ namespace CoordinateConverter
             }
         }
 
+        /// <summary>
+        /// degrees -> rads
+        /// </summary>
+        /// <param name="degrees"></param>
+        /// <returns></returns>
         private static double ToRad(double degrees)
         {
             return degrees * (Math.PI / 180);
         }
 
+        /// <summary>
+        /// rads -> degrees
+        /// </summary>
+        /// <param name="radians"></param>
+        /// <returns></returns>
         private static double ToDegrees(double radians)
         {
             return radians * 180 / Math.PI;
         }
 
+        /// <summary>
+        /// rads to bearing
+        /// </summary>
+        /// <param name="radians"></param>
+        /// <returns></returns>
         private static double ToBearing(double radians)
         {
             // convert radians to degrees (as bearing: 0...360)
             return (ToDegrees(radians) + 360) % 360;
         }
 
-        private static double deg2rad(double deg)
-        {
-            return (deg * Math.PI / 180.0);
-        }
-
-        private static double rad2deg(double rad)
-        {
-            return (rad / Math.PI * 180.0);
-        }
-
+        /// <summary>
+        /// ryals special sauce. not sure if its working or not
+        /// </summary>
+        /// <param name="end"></param>
+        /// <param name="originMeter"></param>
+        /// <param name="originGeo"></param>
+        /// <returns></returns>
         private double FindLatitude(MeterCoordinate end, MeterCoordinate originMeter, GeoCoordinate originGeo)
         {
             int earthRadius = 63781370; //meters
@@ -185,6 +226,13 @@ namespace CoordinateConverter
 
         }
 
+        /// <summary>
+        /// ryals special sauce. not sure if its working or not.
+        /// </summary>
+        /// <param name="end"></param>
+        /// <param name="originMeter"></param>
+        /// <param name="originGeo"></param>
+        /// <returns></returns>
         private double FindLongitude(MeterCoordinate end, MeterCoordinate originMeter, GeoCoordinate originGeo)
         {
             int earthRadius = 63781370; //meters
@@ -223,6 +271,11 @@ namespace CoordinateConverter
         private double latitude;
         private double longitude;
 
+        /// <summary>
+        /// constructor that takes lat lon points
+        /// </summary>
+        /// <param name="v1">lat</param>
+        /// <param name="v2">lon</param>
         public GeoCoordinate(double v1, double v2)
         {
             this.latitude = v1;
@@ -270,6 +323,17 @@ namespace CoordinateConverter
         {
             this.x = 0;
             this.y = 0;
+        }
+
+        /// <summary>
+        /// constructor which takes x and y arguments
+        /// </summary>
+        /// <param name="v1">x</param>
+        /// <param name="v2">y</param>
+        public MeterCoordinate(double v1, double v2)
+        {
+            this.x = v1;
+            this.y = v2;
         }
 
         public double X
