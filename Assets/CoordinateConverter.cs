@@ -21,7 +21,6 @@ namespace CoordinateConverter
             return result;
         }
 
-
         /*
         /// <summary>
         /// pass in origin and unknown point, return its location in 3D space
@@ -226,6 +225,9 @@ namespace CoordinateConverter
             //double circumference = Math.PI * 2 * radius;
             //double deltaX = end.X - originMeter.X;
             //return (deltaX / circumference) * 360 + originGeo.Latitude;
+
+            end.Y -= originMeter.Y;
+
             Console.WriteLine(Convert.ToString(end.Y));
             decimal dlat = (360 * end.Y) / 40008000;
             Console.WriteLine(Convert.ToString(dlat));
@@ -250,6 +252,8 @@ namespace CoordinateConverter
             //double circumference = Math.PI * 2 * radius;
             //double deltaY = end.Y - originMeter.Y;
             //return (deltaY / circumference) * 360 + originGeo.Longitude;
+
+            end.X -= originMeter.X;
 
             decimal latC = 40075160 * (decimal)Math.Cos(Convert.ToDouble(ToRad(originGeo.Latitude)));
             decimal dLon = end.X * (360 / latC);
@@ -277,6 +281,8 @@ namespace CoordinateConverter
             GeoCoordinate result = new GeoCoordinate();
             result.Latitude = FindLatitude(end, originMeter, originGeo);
             result.Longitude = FindLongitude(end, originMeter, originGeo);
+
+
 
             Console.WriteLine(result.Latitude.ToString());
             Console.WriteLine(result.Longitude.ToString());
