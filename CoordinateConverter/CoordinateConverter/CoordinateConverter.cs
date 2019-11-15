@@ -39,7 +39,6 @@ namespace CoordinateConverter
             return result;
         }
 
-
         /*
         /// <summary>
         /// pass in origin and unknown point, return its location in 3D space
