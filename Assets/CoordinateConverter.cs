@@ -8,10 +8,10 @@ namespace CoordinateConverter
         {
             MeterCoordinate result = new MeterCoordinate();
 
-            double dlon = point.Longitude - origin.Longitude;
-            double dlat = point.Latitude - origin.Latitude;
+            decimal dlon = point.Longitude - origin.Longitude;
+            decimal dlat = point.Latitude - origin.Latitude;
 
-            double latitudeCircumference = 40075160 * Math.Cos(ToRad(origin.Latitude));
+            decimal latitudeCircumference = 40075160 * Convert.ToDecimal(Math.Cos(Convert.ToDouble(ToRad(origin.Latitude))));
             result.X = dlon * latitudeCircumference / 360;
             result.Y = dlat * 40008000 / 360;
 
@@ -185,9 +185,9 @@ namespace CoordinateConverter
         /// </summary>
         /// <param name="degrees"></param>
         /// <returns></returns>
-        private static double ToRad(double degrees)
+        private static decimal ToRad(decimal degrees)
         {
-            return degrees * (Math.PI / 180);
+            return degrees * (decimal)(Math.PI / 180);
         }
 
         /// <summary>
@@ -195,9 +195,9 @@ namespace CoordinateConverter
         /// </summary>
         /// <param name="radians"></param>
         /// <returns></returns>
-        private static double ToDegrees(double radians)
+        private static decimal ToDegrees(decimal radians)
         {
-            return radians * 180 / Math.PI;
+            return radians * 180 / (decimal)Math.PI;
         }
 
         /// <summary>
@@ -205,7 +205,7 @@ namespace CoordinateConverter
         /// </summary>
         /// <param name="radians"></param>
         /// <returns></returns>
-        private static double ToBearing(double radians)
+        private static decimal ToBearing(decimal radians)
         {
             // convert radians to degrees (as bearing: 0...360)
             return (ToDegrees(radians) + 360) % 360;
@@ -218,7 +218,7 @@ namespace CoordinateConverter
         /// <param name="originMeter"></param>
         /// <param name="originGeo"></param>
         /// <returns></returns>
-        private double FindLatitude(MeterCoordinate end, MeterCoordinate originMeter, GeoCoordinate originGeo)
+        private decimal FindLatitude(MeterCoordinate end, MeterCoordinate originMeter, GeoCoordinate originGeo)
         {
             //int earthRadius = 63781370; //meters
             //double complimentAngle = 90 - Math.Abs(originGeo.Longitude);
@@ -226,8 +226,11 @@ namespace CoordinateConverter
             //double circumference = Math.PI * 2 * radius;
             //double deltaX = end.X - originMeter.X;
             //return (deltaX / circumference) * 360 + originGeo.Latitude;
-            double dlat = (360 / 40008000) * (end.Y - originMeter.Y);
-            double plat = dlat + originGeo.Latitude;
+            Console.WriteLine(Convert.ToString(end.Y));
+            decimal dlat = (360 * end.Y) / 40008000;
+            Console.WriteLine(Convert.ToString(dlat));
+
+            decimal plat = dlat + originGeo.Latitude;
 
             return plat;
         }
@@ -239,7 +242,7 @@ namespace CoordinateConverter
         /// <param name="originMeter"></param>
         /// <param name="originGeo"></param>
         /// <returns></returns>
-        private double FindLongitude(MeterCoordinate end, MeterCoordinate originMeter, GeoCoordinate originGeo)
+        private decimal FindLongitude(MeterCoordinate end, MeterCoordinate originMeter, GeoCoordinate originGeo)
         {
             //int earthRadius = 63781370; //meters
             //double complimentAngle = 90 - Math.Abs(originGeo.Latitude);
@@ -248,9 +251,9 @@ namespace CoordinateConverter
             //double deltaY = end.Y - originMeter.Y;
             //return (deltaY / circumference) * 360 + originGeo.Longitude;
 
-            double latC = 40075160 * Math.Cos(ToRad(originGeo.Latitude));
-            double dLon = end.X * (360 / latC);
-            double pLon = dLon + originGeo.Longitude;
+            decimal latC = 40075160 * (decimal)Math.Cos(Convert.ToDouble(ToRad(originGeo.Latitude)));
+            decimal dLon = end.X * (360 / latC);
+            decimal pLon = dLon + originGeo.Longitude;
 
             return pLon;
 
@@ -276,22 +279,22 @@ namespace CoordinateConverter
             result.Longitude = FindLongitude(end, originMeter, originGeo);
 
             Console.WriteLine(result.Latitude.ToString());
-            Console.Write(result.Longitude.ToString());
+            Console.WriteLine(result.Longitude.ToString());
             return result;
         }
     }
 
     public class GeoCoordinate
     {
-        private double latitude;
-        private double longitude;
+        private decimal latitude;
+        private decimal longitude;
 
         /// <summary>
         /// constructor that takes lat lon points
         /// </summary>
         /// <param name="v1">lat</param>
         /// <param name="v2">lon</param>
-        public GeoCoordinate(double v1, double v2)
+        public GeoCoordinate(decimal v1, decimal v2)
         {
             this.latitude = v1;
             this.longitude = v2;
@@ -303,7 +306,7 @@ namespace CoordinateConverter
             this.longitude = 0;
         }
 
-        public double Latitude
+        public decimal Latitude
         {
             get
             {
@@ -315,7 +318,7 @@ namespace CoordinateConverter
             }
         }
 
-        public double Longitude
+        public decimal Longitude
         {
             get
             {
@@ -331,8 +334,8 @@ namespace CoordinateConverter
 
     public class MeterCoordinate
     {
-        private double x;
-        private double y;
+        private decimal x;
+        private decimal y;
 
         public MeterCoordinate()
         {
@@ -345,13 +348,13 @@ namespace CoordinateConverter
         /// </summary>
         /// <param name="v1">x</param>
         /// <param name="v2">y</param>
-        public MeterCoordinate(double v1, double v2)
+        public MeterCoordinate(decimal v1, decimal v2)
         {
             this.x = v1;
             this.y = v2;
         }
 
-        public double X
+        public decimal X
         {
             get
             {
@@ -364,7 +367,7 @@ namespace CoordinateConverter
             }
         }
 
-        public double Y
+        public decimal Y
         {
             get
             {
