@@ -12,6 +12,7 @@ public class ControlSphere : MonoBehaviour
     public bool rotateOnlyIfMousedown = true;
     public bool movementStaysFlat = true;
     public static Transform mySphere;
+    public Transform camera;
     public Vector3 baseVector;
     public Button add, delete, up, down;
     private Vector3 lastMouse = new Vector3(255, 255, 255); //kind of in the middle of the screen, rather than at the top (play)
@@ -55,28 +56,34 @@ public class ControlSphere : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.W))
         {
-            p_Velocity += new Vector3(0, 0, 1);
+            p_Velocity = camera.forward;
+            //p_Velocity += new Vector3(0, 0, 1);
             //p_Velocity = Camera.main.transform.TransformDirection(p_Velocity);
         }
         if (Input.GetKey(KeyCode.S))
         {
-            p_Velocity += new Vector3(0, 0, -1);
+            p_Velocity = new Vector3(-camera.forward.x, -camera.forward.y, -camera.forward.z);
+            //p_Velocity += new Vector3(0, 0, -1);
         }
         if (Input.GetKey(KeyCode.A))
         {
-            p_Velocity += new Vector3(-1, 0, 0);
+            p_Velocity = new Vector3(-camera.right.x, -camera.right.y, -camera.right.z);
+            //p_Velocity += new Vector3(-1, 0, 0);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            p_Velocity += new Vector3(1, 0, 0);
+            p_Velocity = camera.right;
+            //p_Velocity += new Vector3(1, 0, 0);
         }
         if (Input.GetKey(KeyCode.Q))
         {
-            p_Velocity += new Vector3(0, -1, 0);
+            p_Velocity = new Vector3(-camera.up.x, -camera.up.y, -camera.up.z);
+            //p_Velocity += new Vector3(0, -1, 0);
         }
         if (Input.GetKey(KeyCode.E))
         {
-            p_Velocity += new Vector3(0, 1, 0);
+            p_Velocity = camera.up;
+            //p_Velocity += new Vector3(0, 1, 0);
         }
         return p_Velocity;
     }
