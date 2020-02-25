@@ -50,7 +50,7 @@ public class importExportPoints : MonoBehaviour
         string[] words = { };
         // Read the file and display it line by line.  
         System.IO.StreamReader file =
-            new System.IO.StreamReader(@"SloanTest.waypoints");
+            new System.IO.StreamReader(@"AlphaDemo.waypoints");
         //Ignoring header
         if ((line = file.ReadLine()) == null)
             Debug.Log("Blank File!!!");
@@ -121,8 +121,8 @@ public class importExportPoints : MonoBehaviour
 
         // infile/outfile
         System.IO.StreamReader inFile =
-            new System.IO.StreamReader(@"SloanTest.waypoints");
-        System.IO.StreamWriter outFile = new System.IO.StreamWriter(@"SloanTestOutput.waypoints");
+            new System.IO.StreamReader(@"AlphaDemo.waypoints");
+        System.IO.StreamWriter outFile = new System.IO.StreamWriter(@"AlphaDemoOutput.waypoints");
 
 
         //Ignoring header
