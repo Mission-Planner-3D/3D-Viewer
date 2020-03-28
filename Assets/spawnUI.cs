@@ -10,24 +10,32 @@ public class spawnUI : MonoBehaviour
     public static Transform selectedSphere;
     public static bool onSphere;
     public Renderer sphereRender;
+    public OVRInput.Button button;
     
     // Start is called before the first frame update
     void Start()
     {
         deleteInScreen = false;
         onSphere = false;
+        //GameObject input = GameObject.Find("UIHelpers");
+        //input = input.transform.GetChild(2).gameObject;
+        //EventSystem eventSystem = input.GetComponent<EventSystem>();
+        button = ((UnityEngine.EventSystems.OVRInputModule)FindObjectOfType(typeof(UnityEngine.EventSystems.OVRInputModule))).joyPadClickButton;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !CheckUIHover.BlockedByUI)
+        //!CheckUIHover.BlockedByUI
+        if (OVRInput.GetDown(button))
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             if (Physics.Raycast(ray, out hit))
             {
+                Debug.Log("hit");
+                Debug.Log(hit.transform.name);
                 if (hit.transform.name == "Sphere")
                 {
                     selectedSphere = hit.transform;
