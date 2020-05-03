@@ -8,5 +8,7 @@ HELP MENU
 -Moving a point up or down the list changes it's occurance in the list of points
 -You can edit the altitude of a point by entering your desired altitude, and clicking the enter button TWICE
 -To move a point, click 'move point' then place your mouse where you want the point to end up, and click 'p'
+-The exported mission plan will be in the file 'outfile.waypoints'
+-If you are running this as a standalone exe, the imported file must be called 'infile.waypoints', and it must be located in the directory the exe is located.
 
 ENJOY

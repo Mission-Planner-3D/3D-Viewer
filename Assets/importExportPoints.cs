@@ -88,9 +88,12 @@ public class importExportPoints : MonoBehaviour
         decimal[] nums = new decimal[20];
         string[] words = { };
 
-        //this launches the windows file explorer
-        string path = EditorUtility.OpenFilePanel("", "", "");
+        string path = "infile.waypoints";
 
+        //this launches the windows file explorer
+#if UNITY_EDITOR
+        path = EditorUtility.OpenFilePanel("", "", "");
+#endif
         // convert string to System.IO.StreamReader for reading file  
         System.IO.StreamReader file =
             new System.IO.StreamReader(@path);
@@ -187,7 +190,7 @@ public class importExportPoints : MonoBehaviour
         // infile/outfile
         System.IO.StreamReader inFile =
             new System.IO.StreamReader(@"SloanTest.waypoints");
-        System.IO.StreamWriter outFile = new System.IO.StreamWriter(@"SloanTestOutput.waypoints");
+        System.IO.StreamWriter outFile = new System.IO.StreamWriter(@"outfile.waypoints");
 
 
         //Ignoring header
