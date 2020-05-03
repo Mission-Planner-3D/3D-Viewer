@@ -91,7 +91,7 @@ public class importExportPoints : MonoBehaviour
         decimal[] nums = new decimal[20];
         string[] words = { };
 
-        string path = "infile.waypoints";
+        string path = ".\\infile.waypoints";
 
         //this launches the windows file explorer
 #if UNITY_EDITOR
