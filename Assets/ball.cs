@@ -21,6 +21,7 @@ public class ball : MonoBehaviour
     void OnMouseDown()
     {
         var rand = new System.Random();
+		
         transform.position = transform.position + new Vector3(rand.Next(3), rand.Next(3), rand.Next(3));
     }
 }
